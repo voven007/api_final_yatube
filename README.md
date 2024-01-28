@@ -1,27 +1,77 @@
 # api_final
-api final
 
-Описание проекта:
+## Описание проекта:
 
+Проект представляет собой API для проекта yatube.
 
-Как запустить проект:
+Функционал данного проекта позволяет пользователям публиковать свои посты и управлять подписками
+
+Сериализация данных для моделей проекта (Post, Comment, Group, Follow)
+
+Обработка запросов к базе данных проекта api_final_yatube
+
+## Как запустить проект:
+
 Клонировать репозиторий и перейти в него в командной строке:
+```git clone https://github.com/yandex-praktikum/kittygram.git```
+```cd kittygram```
 
-git clone https://github.com/yandex-praktikum/kittygram.git
-cd kittygram
 Cоздать и активировать виртуальное окружение:
+```python3 -m venv env```
+```source env/bin/activate```
 
-python3 -m venv env
-source env/bin/activate
 Установить зависимости из файла requirements.txt:
+```python3 -m pip install --upgrade pip```
+```pip install -r requirements.txt```
 
-python3 -m pip install --upgrade pip
-pip install -r requirements.txt
 Выполнить миграции:
+```python3 manage.py migrate```
 
-python3 manage.py migrate
 Запустить проект:
+```python3 manage.py runserver```
 
-python3 manage.py runserver
+## Примеры API проекта: 
 
-Примеры API проекта:
+Пример POST-запроса: добавление нового поста.
+
+POST .../api/v1/posts/
+```
+{
+    "text": "Вечерело сегодня рано, и звёзды уже начали появляться на бледном небе.",
+    "group": 1
+} 
+```
+Пример ответа:
+```
+{
+    "id": 4,
+    "text": "Вечерело сегодня рано, и звёзды уже начали появляться на бледном небе.",
+    "author": "ivan",
+    "image": null,
+    "group": 1,
+    "pub_date": "2023-01-28T21:13:10.074481Z"
+} 
+```
+Пример POST-запроса: отправляем новый комментарий к посту с id=4.
+
+POST .../api/v1/posts/4/comments/
+```
+{
+    "text": "Комментарий к посту"
+}
+```
+Пример ответа:
+```
+{
+    "id": 1,
+    "author": "ivan",
+    "post": 4,
+    "text": "Комментарий к посту",
+    "created": "2023-01-32T21:15:42.157453Z"
+} 
+```
+
+## Авторы проекта:
+
+* Бабенко Владимир
+* Yandex Practicum
